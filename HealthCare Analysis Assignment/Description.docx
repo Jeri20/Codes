@@ -1,7 +1,21 @@
-Many of us are familiar with individuals who have faced the challenges of battling breast cancer, or we've at least heard stories about the struggles faced by those fighting against this disease. Breast cancer is the most common cancer among women, affecting approximately 2.1 million women every year. Tragically, it also leads to the highest number of cancer-related deaths among women. In 2018 alone, an estimated 627,000 women lost their lives due to breast cancer.
+Many of us are familiar with individuals who have faced the challenges of battling breast cancer,
+or we've at least heard stories about the struggles faced by those fighting against this disease. 
+Breast cancer is the most common cancer among women, affecting approximately 2.1 million women every year. 
+Tragically, it also leads to the highest number of cancer-related deaths among women. In 2018 alone, 
+an estimated 627,000 women lost their lives due to breast cancer.
 
-In the clinical management of cancer patients, one crucial aspect is the accurate estimation of prognosis and the expected duration of survival. Even among breast cancer patients with the same disease stage and similar clinical characteristics, treatment responses and overall survival can vary significantly. This variability prompts the question: why do these differences occur?
+In the clinical management of cancer patients, 
+one crucial aspect is the accurate estimation of prognosis and the expected duration of survival.
+Even among breast cancer patients with the same disease stage and similar clinical characteristics, 
+treatment responses and overall survival can vary significantly. This variability prompts the question: why do these differences occur?
 
-Cancers are inherently linked to genetic abnormalities. Gene expression measures the activity of genes within a tissue and provides insights into its complex functions. Comparing gene expression patterns between normal and diseased tissues can offer valuable insights into cancer prognosis and outcomes. Leveraging machine learning techniques on genetic data holds the potential to provide accurate predictions of survival times and, in turn, can help avoid unnecessary surgical and treatment procedures.
+Cancers are inherently linked to genetic abnormalities. 
+Gene expression measures the activity of genes within a tissue and provides insights into its complex functions.
+Comparing gene expression patterns between normal and diseased tissues can offer valuable insights into cancer prognosis and outcomes.
+Leveraging machine learning techniques on genetic data holds the potential to provide accurate predictions of survival times and, 
+in turn, can help avoid unnecessary surgical and treatment procedures.
 
-The primary objective of this project is to predict breast cancer survival using machine learning models that utilize both clinical data and gene expression profiles.
+The primary objective of this project is to predict breast cancer survival using machine learning models that utilize 
+both clinical data and gene expression profiles.
+
+Referenced from: https://www.kaggle.com/datasets/raghadalharbi/breast-cancer-gene-expression-profiles-metabric
