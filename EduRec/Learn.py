@@ -1,43 +1,36 @@
-import streamlit as st
 import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import NearestNeighbors
+from sklearn.metrics import accuracy_score
+import requests
 
-# API endpoint to fetch course data
-COURSE_API = "https://your-api-url-here/courses"
+# Function to load the dataset from a URL
+def load_data_from_url(url):
+    response = requests.get(url)
+    data = pd.read_csv(pd.compat.StringIO(response.text))
+    return data
 
-# API endpoint to fetch user's completed courses
-USER_API = "https://your-api-url-here/user/completed_courses"
+# Replace 'your_url' with the actual URL to fetch the dataset
+data = load_data_from_url('your_url')
+# Split the dataset into features (X) and target (y)
+X = data.drop('completed_course', axis=1)
+y = data['completed_course']
 
+# Split the dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-@st.cache(allow_output_mutation=True)
-def get_data(url):
-    try:
-        data = pd.read_json(url)
-        return data
-    except Exception as e:
-        print(f"Error fetching data from {url}: {e}")
-        return pd.DataFrame()
+# Train the model
+model = NearestNeighbors(n_neighbors=3)
+model.fit(X_train)
 
+# Make predictions on the test set
+predictions = model.predict(X_test)
 
-def fetch_recommended_courses(user_id):
-    # Fetch the list of user's completed courses
-    completed_courses = get_data(f"{USER_API}/{user_id}")
+# Evaluate the model's performance
+accuracy = accuracy_score(y_test, predictions)
+print(f"Accuracy: {accuracy}")
 
-    # Fetch all available courses
-    all_courses = get_data(COURSE_API)
-
-    # Remove the completed courses from the list of all courses
-    recommended_courses = all_courses[~all_courses['id'].isin(completed_courses['id'])]
-
-    return recommended_courses
-
-
-st.title("Course Recommendation System")
-
-# Replace 'your_user_id' with the actual user ID or obtain it through user authentication
-user_id = 'your_user_id'
-recommended_courses = fetch_recommended_courses(user_id)
-
-if not recommended_courses.empty:
-    st.subheader("Recommended Courses")
-    for _, course in recommended_courses.iterrows():
-        st.write(f"{course['name']} - Level
+# Use the trained model to make course recommendations for a new user
+new_user = pd.DataFrame({'user_id': ['new_user'], 'course_id': ['math_course']})
+recommendations = model.kneighbors(new_user, n_neighbors=3, return_distance=False)
+print(f"Recommended courses for new user: {recommendations}")
